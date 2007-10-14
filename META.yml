@@ -1,6 +1,6 @@
 ---
 name: Color-Similarity-HCL
-version: 0.02
+version: 0.03
 author:
   - 'Mattia Barbon <mbarbon@cpan.org>'
 abstract: compute color similarity using the HCL color space
@@ -15,8 +15,8 @@ requires:
 provides:
   Color::Similarity::HCL:
     file: lib/Color/Similarity/HCL.pm
-    version: 0.02
-generated_by: Module::Build version 0.2806
+    version: 0.03
+generated_by: Module::Build version 0.2808
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2
