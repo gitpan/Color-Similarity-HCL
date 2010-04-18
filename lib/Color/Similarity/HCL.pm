@@ -31,7 +31,7 @@ L<http://w3.uqo.ca/missaoui/Publications/TRColorSpace.zip>
 use strict;
 use base qw(Exporter);
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 our @EXPORT_OK = qw(rgb2hcl distance distance_hcl);
 
 use List::Util qw(max min);
@@ -121,9 +121,12 @@ sub distance_hcl {
 
     my $Ah = abs( $h1 - $h2 ) + Ah_inc;
     my( $Dl, $Dh ) = ( abs( $l1 - $l2 ), abs( $h1 - $h2 ) );
-    return sqrt(   ( Al * $Dl ) ** 2
-                 + $Ah * (   $c1 ** 2
-                           + $c2 ** 2
+    # here it used to use <x> ** 2 to compute squares, but this causes
+    # some rounding problems
+    my $AlDl = Al * $Dl;
+    return sqrt(   $AlDl * $AlDl
+                 + $Ah * (   $c1 * $c1
+                           + $c2 * $c2
                            - 2 * $c1 * $c2 * cos( deg2rad( $Dh ) )
                            )
                  );
